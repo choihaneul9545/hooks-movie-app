@@ -1,28 +1,28 @@
 export const initialState = {
   loading: true,
   movies: [],
-  errorMessage: null
+  errorMessage: null,
 };
 
-export const reducer = (state, action) => {
+export const reducer = (state: any, action: any) => {
   switch (action.type) {
     case "SEARCH_MOVIES_REQUEST":
       return {
         ...state,
         loading: true,
-        errorMessage: null
+        errorMessage: null,
       };
     case "SEARCH_MOVIES_SUCCESS":
       return {
         ...state,
         loading: false,
-        movies: action.payload
+        movies: action.payload,
       };
     case "SEARCH_MOVIES_FAILURE":
       return {
         ...state,
         loading: false,
-        errorMessage: action.error
+        errorMessage: action.error,
       };
     default:
       return state;

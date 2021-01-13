@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 
-const Search = ({ search }) => {
+const Search = ({ search }: any) => {
   const [searchValue, setSearchValue] = useState("");
 
-  const handleSearchInputChanges = e => {
+  const handleSearchInputChanges = (e: any) => {
     setSearchValue(e.target.value);
   };
 
@@ -11,7 +11,7 @@ const Search = ({ search }) => {
     setSearchValue("");
   };
 
-  const callSearchFunction = e => {
+  const callSearchFunction = (e: any) => {
     e.preventDefault();
     search(searchValue);
     resetInputField();

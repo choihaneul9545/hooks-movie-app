@@ -1,5 +1,4 @@
 import React, { useReducer, useEffect } from "react";
-
 import Header from "./Header";
 import Movie from "./Movie";
 import spinner from "../assets/ajax-loader.gif";
@@ -13,10 +12,10 @@ const App = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
-    axios.get(MOVIE_API_URL).then(jsonResponse => {
+    axios.get(MOVIE_API_URL).then((jsonResponse) => {
       dispatch({
         type: "SEARCH_MOVIES_SUCCESS",
-        payload: jsonResponse.data.Search
+        payload: jsonResponse.data.Search,
       });
     });
   }, []);
@@ -26,22 +25,22 @@ const App = () => {
     window.location.reload();
   };
 
-  const search = searchValue => {
+  const search = (searchValue: any) => {
     dispatch({
-      type: "SEARCH_MOVIES_REQUEST"
+      type: "SEARCH_MOVIES_REQUEST",
     });
 
     axios(`https://www.omdbapi.com/?s=${searchValue}&apikey=4a3b711b`).then(
-      jsonResponse => {
+      (jsonResponse) => {
         if (jsonResponse.data.Response === "True") {
           dispatch({
             type: "SEARCH_MOVIES_SUCCESS",
-            payload: jsonResponse.data.Search
+            payload: jsonResponse.data.Search,
           });
         } else {
           dispatch({
             type: "SEARCH_MOVIES_FAILURE",
-            error: jsonResponse.data.Error
+            error: jsonResponse.data.Error,
           });
         }
       }
@@ -56,7 +55,7 @@ const App = () => {
     ) : errorMessage ? (
       <div className="errorMessage">{errorMessage}</div>
     ) : (
-      movies.map((movie, index) => (
+      movies.map((movie: any, index: number) => (
         <Movie key={`${index}-${movie.Title}`} movie={movie} />
       ))
     );

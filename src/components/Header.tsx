@@ -1,6 +1,6 @@
 import React from "react";
 
-const Header = props => {
+const Header = (props: any) => {
   return (
     <header className="App-header">
       <h2>{props.text}</h2>
