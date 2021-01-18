@@ -1,9 +1,14 @@
 import React from "react";
 
-const Header = (props: any) => {
+interface IHeader {
+  text: string;
+  refreshPage: () => void;
+}
+
+const Header = ({ text, refreshPage }: IHeader) => {
   return (
-    <header className="App-header">
-      <h2>{props.text}</h2>
+    <header className="App-header" onClick={refreshPage}>
+      <h2>{text}</h2>
     </header>
   );
 };

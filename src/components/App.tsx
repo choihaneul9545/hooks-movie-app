@@ -1,53 +1,49 @@
-import React, { useReducer, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import Movie from "./Movie";
 import spinner from "../assets/ajax-loader.gif";
 import Search from "./Search";
-import { initialState, reducer } from "../store/reducer";
 import axios from "axios";
+
+interface MovieData {
+  Title: string;
+  Year: string;
+  imdbID: string;
+  Type: string;
+  Poster: string;
+}
 
 const MOVIE_API_URL = "https://www.omdbapi.com/?s=man&apikey=4a3b711b";
 
 const App = () => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [movieData, setMovieData] = useState<MovieData[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   useEffect(() => {
     axios.get(MOVIE_API_URL).then((jsonResponse) => {
-      dispatch({
-        type: "SEARCH_MOVIES_SUCCESS",
-        payload: jsonResponse.data.Search,
-      });
+      setMovieData(jsonResponse.data.Search);
+      // setLoading(false);
     });
   }, []);
 
-  // you can add this to the onClick listener of the Header component
   const refreshPage = () => {
     window.location.reload();
   };
 
-  const search = (searchValue: any) => {
-    dispatch({
-      type: "SEARCH_MOVIES_REQUEST",
-    });
-
+  const search = (searchValue: string) => {
     axios(`https://www.omdbapi.com/?s=${searchValue}&apikey=4a3b711b`).then(
       (jsonResponse) => {
         if (jsonResponse.data.Response === "True") {
-          dispatch({
-            type: "SEARCH_MOVIES_SUCCESS",
-            payload: jsonResponse.data.Search,
-          });
+          setMovieData(jsonResponse.data.Search);
+          // setLoading(false);
         } else {
-          dispatch({
-            type: "SEARCH_MOVIES_FAILURE",
-            error: jsonResponse.data.Error,
-          });
+          setLoading(false);
+          setErrorMessage(jsonResponse.data.Error);
         }
       }
     );
   };
-
-  const { movies, errorMessage, loading } = state;
 
   const retrievedMovies =
     loading && !errorMessage ? (
@@ -55,7 +51,7 @@ const App = () => {
     ) : errorMessage ? (
       <div className="errorMessage">{errorMessage}</div>
     ) : (
-      movies.map((movie: any, index: number) => (
+      movieData.map((movie: any, index: number) => (
         <Movie key={`${index}-${movie.Title}`} movie={movie} />
       ))
     );
@@ -63,7 +59,7 @@ const App = () => {
   return (
     <div className="App">
       <div className="m-container">
-        <Header text="HOOKED" />
+        <Header text="HOOKED" refreshPage={refreshPage} />
 
         <Search search={search} />
 
