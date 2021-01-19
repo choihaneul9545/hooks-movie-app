@@ -1,47 +1,16 @@
-# Hooks Movie App
-This is the demo application using React Hooks!!!
+### ticketplace 과제를 위한 폴더입니다.
 
-The article containing instructions on how to build this app can be found [here](https://www.freecodecamp.org/news/how-to-build-a-movie-search-app-using-react-hooks-24eb72ddfaf7/)
+#### 질문 1
 
-# Getting Started
-These instructions should get you a copy of the project up and running on your local machine for development and testing purposes.
+#### 1-1 리액트 프로젝트에 타입 스크립트를 적용시켜 만들어보았습니다.
 
-# Prerequisites
-Things you need to get started:
-- A recent version of Node running on your machine (8.0 or higher), check this [link](https://nodejs.org/en/download/) to download it.
-- A cool text editor, I recommend using either [VSCode](https://code.visualstudio.com/download) or [Atom(with the nuclide plugin)](https://nuclide.io/docs/editor/setup/)
+#### 1-2 Reducer를 통해서 모든 이벤트를 정의할 필요가 없는 코드라고 생각되어 다시 state 값으로만 관리했습니다. 모든 state를 reducer로 관리하면 더 코드가 깔끔하고 간결해야 하는데 프로젝트 규모가 크지 않고 관리하는 흐름도 복잡하지 않아 오히려 Reducer를 사용하는 것이 구조의 복잡함과 한 눈에 보이지 않는 느낌을 주는 것 같았습니다.
 
-# Installing
-To get the project running, follow these steps:
-- Create a folder
--Enter/Navigate into that folder
-```
-cd <folder-name>
-```
+#### 1-3 이 프로젝트를 실행하시려면 branch가 feature/ticketplace_haneul 인지 확인해주시고 npm install 하고 npm start 로 실행하시면 됩니다.
 
-- Clone this repository:
-```
-git clone https://github.com/samie820/hooks-movie-app.git
-```
+#### 질문 2
 
-- Install all the project's dependencies:
-```
-yarn or npm install
-```
-- Once that's done, run the project:
-```
-npm start or yarn start
-```
-
-# Deployment
-The app can be deployed using either heroku or Netlify
-
-# Built With
-- Javascript
-- React - (UI library)
-
-# Contribution
-Please read the [CONTRIBUTING.md](#) file (Soon to be added) to see how you can contribute and add more features to the project.
-
-# Authors
-TODO: Add the Authors
+less 를 쓰는 것과 CSS 를 쓰는 것의 차이는 뭘까요?
+less는 CSS에 Script의 능력(변수, 함수, 연산, 중첩, 스코프등등)을 덧붙여 확장한 언어입니다. 클라이언트 또는 서버환경(node.js) 모두에서 실행됩니다.
+less는 css의 확장 버전으로 하위호환성이 뛰어나며 css 기존 문법을 그대로 사용하기 때문에 익히기 쉽다는 장점이 있습니다. Sass 와 비슷하게 css의 코드의 재사용성과 간결함을 위해 도입하여 사용하는 것입니다. 애플리케이션의 크기가 커질 수록 그에 따라 css 코드의 길이도 늘어납니다. 반복되는 코드를 관리하는 것에 중요성을 알고 있는 개발자라면 sass, less, styled-components 같은 것들을 이용해 css 코드를 좀 더 효율적으로 작성하기 위한 노력을 하고자 할 것입니다.
+sass와의 다른 점으로 less에서만 이스케이프 기능을 제공합니다. 유효하지 않은 코드가 포함되어 있을 경우, 해당 코드를 해석하지 않도록 만드는 방법으로 ~ 를 앞에 붙여줍니다.
