@@ -23,8 +23,8 @@ const App = () => {
   useEffect(() => {
     axios.get(MOVIE_API_URL).then((jsonResponse) => {
       setMovieData(jsonResponse.data.Search);
-      // setLoading(false);
     });
+    setLoading(false);
   }, []);
 
   const refreshPage = () => {
@@ -36,13 +36,12 @@ const App = () => {
       (jsonResponse) => {
         if (jsonResponse.data.Response === "True") {
           setMovieData(jsonResponse.data.Search);
-          // setLoading(false);
         } else {
-          setLoading(false);
           setErrorMessage(jsonResponse.data.Error);
         }
       }
     );
+    setLoading(false);
   };
 
   const retrievedMovies =
